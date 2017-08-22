@@ -26,24 +26,29 @@ class IconController {
         }
     }
     
-    var mockIcons: [Icon] {
-        
-        let snapchat = Icon(name: "Snapchat", image: #imageLiteral(resourceName: "snapchat"))
-        let facebook = Icon(name: "Facebook", image: #imageLiteral(resourceName: "fb"))
-        let medium = Icon(name: "Medium", image: #imageLiteral(resourceName: "medium"))
-        let settings = Icon(name: "Settings", image: #imageLiteral(resourceName: "settings"))
-        let mail = Icon(name: "Mail", image: #imageLiteral(resourceName: "Mail"))
-        let stock = Icon(name: "Stock", image: #imageLiteral(resourceName: "stock"))
-        
-        return [snapchat, facebook, medium, settings, mail, stock]
-    }
     
     var customIcons: [Icon] {
-        
-        return []
+        return icons.filter({$0.isCustomIcon})
     }
     
-    static func createMockIcons(iconArray: [Icon]) {
+    var defaultIcons: [Icon] {
+        return icons.filter({!$0.isCustomIcon})
+    }
+    
+//    var allIcons: [Icon] = []
+ 
+    
+    static func createMockIcons() {
+        
+        let _ = Icon(name: "Snapchat", image: #imageLiteral(resourceName: "snapchat"), isCustomIcon: false)
+        let _ = Icon(name: "Facebook", image: #imageLiteral(resourceName: "fb"), isCustomIcon: false)
+        let _ = Icon(name: "Medium", image: #imageLiteral(resourceName: "medium"), isCustomIcon: false)
+        let _ = Icon(name: "Settings", image: #imageLiteral(resourceName: "settings"), isCustomIcon: false)
+        let _ = Icon(name: "Mail", image: #imageLiteral(resourceName: "Mail"), isCustomIcon: false)
+        let _ = Icon(name: "Stock", image: #imageLiteral(resourceName: "stock"), isCustomIcon: false)
+
+        IconController.shared.saveToPersistentStorage()
+        
         UserDefaults.standard.set(true, forKey: "mockIconsWereCreated")
         
     }
@@ -56,8 +61,15 @@ class IconController {
 //    }
     func add(icon: Icon) {
         saveToPersistentStorage()
-//        customIcons.append(icon)
     }
+    
+//    func update(icon: Icon) {
+//            guard let icon = icon else { return }
+//            self.iconImage.image = icon.iconImage
+//            self.iconLabel.text = icon.name
+//            
+//    
+//    }
 
     func remove(icon: Icon) {
         icon.managedObjectContext?.delete(icon)

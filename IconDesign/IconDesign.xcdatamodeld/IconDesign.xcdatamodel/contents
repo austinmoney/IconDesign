@@ -5,10 +5,11 @@
     </entity>
     <entity name="Icon" representedClassName="Icon" syncable="YES" codeGenerationType="class">
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="isCustomIcon" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Icon" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="Background" positionX="-63" positionY="0" width="128" height="60"/>
+        <element name="Icon" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>

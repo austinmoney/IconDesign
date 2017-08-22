@@ -11,13 +11,14 @@ import CoreData
 
 extension Icon {
     
-    convenience init(name: String, image: UIImage, context: NSManagedObjectContext = CoreDataStack.context) {
+    convenience init(name: String, image: UIImage, isCustomIcon: Bool = true, context: NSManagedObjectContext = CoreDataStack.context) {
         
         self.init(context: context)
         
         self.name = name
         let imageData = UIImagePNGRepresentation(image) as NSData?
         self.image = imageData
+        self.isCustomIcon = isCustomIcon
     }
     
     var iconImage: UIImage? {
