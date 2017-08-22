@@ -66,13 +66,13 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return IconController.shared.mockIcons.count
+        return IconController.shared.icons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "iconCell", for: indexPath) as? IconCollectionViewCell else { return UICollectionViewCell() }
         
-        let icon = IconController.shared.mockIcons[indexPath.row]
+        let icon = IconController.shared.icons[indexPath.row]
         
         cell.iconImage.image = icon.iconImage
         cell.iconLabel.text = icon.name
