@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.swift
 //  IconDesign
 //
@@ -12,6 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+//    if UserDefaults.standard.bool(forKey: "mockIconsWereCreated") != true {
+//        createMockFunctions()
+//    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

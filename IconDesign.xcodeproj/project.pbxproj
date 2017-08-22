@@ -7,21 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA0EA6E01F463845000F1ECA /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0EA6DF1F463845000F1ECA /* IconView.swift */; };
+		CA0EA6E21F463E6C000F1ECA /* DefaultIconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0EA6E11F463E6C000F1ECA /* DefaultIconTableViewCell.swift */; };
+		CA0EA6E41F463E8C000F1ECA /* CustomIconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0EA6E31F463E8C000F1ECA /* CustomIconTableViewCell.swift */; };
+		CA0EA6E61F463FE9000F1ECA /* IconDesignTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0EA6E51F463FE9000F1ECA /* IconDesignTableViewController.swift */; };
+		CA2AB96D1F4C7F90007C8918 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB96C1F4C7F90007C8918 /* Background.swift */; };
+		CA2AB96F1F4C8063007C8918 /* BackgroundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB96E1F4C8063007C8918 /* BackgroundController.swift */; };
+		CA2AB9711F4C8908007C8918 /* AddIconImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2AB9701F4C8908007C8918 /* AddIconImageTest.swift */; };
 		CA7EED141F434D8E0072F370 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7EED131F434D8E0072F370 /* AppDelegate.swift */; };
-		CA7EED161F434D8E0072F370 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7EED151F434D8E0072F370 /* ViewController.swift */; };
 		CA7EED191F434D8E0072F370 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA7EED171F434D8E0072F370 /* Main.storyboard */; };
 		CA7EED1B1F434D8E0072F370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA7EED1A1F434D8E0072F370 /* Assets.xcassets */; };
 		CA7EED1E1F434D8E0072F370 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA7EED1C1F434D8E0072F370 /* LaunchScreen.storyboard */; };
+		CA7EED261F434EBD0072F370 /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7EED251F434EBD0072F370 /* MainCollectionViewController.swift */; };
+		CA7EED281F4350700072F370 /* IconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7EED271F4350700072F370 /* IconController.swift */; };
+		CA7EED2A1F4364260072F370 /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7EED291F4364260072F370 /* IconCollectionViewCell.swift */; };
+		CA7EED2C1F436AB80072F370 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7EED2B1F436AB80072F370 /* Icon.swift */; };
+		CABE98C51F47427000C11F37 /* BackgroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABE98C41F47427000C11F37 /* BackgroundTableViewCell.swift */; };
+		CABE98C71F474FE100C11F37 /* NewIconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABE98C61F474FE100C11F37 /* NewIconTableViewCell.swift */; };
+		CABE98C91F4B480100C11F37 /* MainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABE98C81F4B480100C11F37 /* MainCollectionView.swift */; };
+		CABE98CB1F4B489200C11F37 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABE98CA1F4B489200C11F37 /* MainViewController.swift */; };
+		CAF1610B1F43A46600965040 /* IconDesign.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAF161091F43A46600965040 /* IconDesign.xcdatamodeld */; };
+		CAF161111F43A56400965040 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF161101F43A56400965040 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA0EA6DF1F463845000F1ECA /* IconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
+		CA0EA6E11F463E6C000F1ECA /* DefaultIconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultIconTableViewCell.swift; sourceTree = "<group>"; };
+		CA0EA6E31F463E8C000F1ECA /* CustomIconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomIconTableViewCell.swift; sourceTree = "<group>"; };
+		CA0EA6E51F463FE9000F1ECA /* IconDesignTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconDesignTableViewController.swift; sourceTree = "<group>"; };
+		CA2AB96C1F4C7F90007C8918 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		CA2AB96E1F4C8063007C8918 /* BackgroundController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundController.swift; sourceTree = "<group>"; };
+		CA2AB9701F4C8908007C8918 /* AddIconImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIconImageTest.swift; sourceTree = "<group>"; };
 		CA7EED101F434D8E0072F370 /* IconDesign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconDesign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA7EED131F434D8E0072F370 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CA7EED151F434D8E0072F370 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CA7EED181F434D8E0072F370 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA7EED1A1F434D8E0072F370 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA7EED1D1F434D8E0072F370 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA7EED1F1F434D8E0072F370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA7EED251F434EBD0072F370 /* MainCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
+		CA7EED271F4350700072F370 /* IconController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconController.swift; sourceTree = "<group>"; };
+		CA7EED291F4364260072F370 /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA7EED2B1F436AB80072F370 /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		CABE98C41F47427000C11F37 /* BackgroundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTableViewCell.swift; sourceTree = "<group>"; };
+		CABE98C61F474FE100C11F37 /* NewIconTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewIconTableViewCell.swift; sourceTree = "<group>"; };
+		CABE98C81F4B480100C11F37 /* MainCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionView.swift; sourceTree = "<group>"; };
+		CABE98CA1F4B489200C11F37 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CAF1610A1F43A46600965040 /* IconDesign.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IconDesign.xcdatamodel; sourceTree = "<group>"; };
+		CAF161101F43A56400965040 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +86,70 @@
 		CA7EED121F434D8E0072F370 /* IconDesign */ = {
 			isa = PBXGroup;
 			children = (
-				CA7EED131F434D8E0072F370 /* AppDelegate.swift */,
-				CA7EED151F434D8E0072F370 /* ViewController.swift */,
-				CA7EED171F434D8E0072F370 /* Main.storyboard */,
-				CA7EED1A1F434D8E0072F370 /* Assets.xcassets */,
-				CA7EED1C1F434D8E0072F370 /* LaunchScreen.storyboard */,
-				CA7EED1F1F434D8E0072F370 /* Info.plist */,
+				CAF1610C1F43A4F600965040 /* Models */,
+				CAF1610F1F43A51F00965040 /* Model Controllers */,
+				CAF1610E1F43A51000965040 /* ViewControllers */,
+				CAF1610D1F43A50300965040 /* Storyboards */,
+				CAF161121F43A5E300965040 /* Resources */,
 			);
 			path = IconDesign;
+			sourceTree = "<group>";
+		};
+		CAF1610C1F43A4F600965040 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CAF161091F43A46600965040 /* IconDesign.xcdatamodeld */,
+				CA7EED2B1F436AB80072F370 /* Icon.swift */,
+				CA2AB96C1F4C7F90007C8918 /* Background.swift */,
+				CAF161101F43A56400965040 /* CoreDataStack.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		CAF1610D1F43A50300965040 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CA7EED171F434D8E0072F370 /* Main.storyboard */,
+				CA7EED1C1F434D8E0072F370 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		CAF1610E1F43A51000965040 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CABE98CA1F4B489200C11F37 /* MainViewController.swift */,
+				CABE98C81F4B480100C11F37 /* MainCollectionView.swift */,
+				CA7EED251F434EBD0072F370 /* MainCollectionViewController.swift */,
+				CA0EA6E51F463FE9000F1ECA /* IconDesignTableViewController.swift */,
+				CA7EED291F4364260072F370 /* IconCollectionViewCell.swift */,
+				CA0EA6E11F463E6C000F1ECA /* DefaultIconTableViewCell.swift */,
+				CA0EA6E31F463E8C000F1ECA /* CustomIconTableViewCell.swift */,
+				CABE98C41F47427000C11F37 /* BackgroundTableViewCell.swift */,
+				CABE98C61F474FE100C11F37 /* NewIconTableViewCell.swift */,
+				CA0EA6DF1F463845000F1ECA /* IconView.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CAF1610F1F43A51F00965040 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA7EED271F4350700072F370 /* IconController.swift */,
+				CA2AB96E1F4C8063007C8918 /* BackgroundController.swift */,
+			);
+			name = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		CAF161121F43A5E300965040 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CA2AB9701F4C8908007C8918 /* AddIconImageTest.swift */,
+				CA7EED131F434D8E0072F370 /* AppDelegate.swift */,
+				CA7EED1A1F434D8E0072F370 /* Assets.xcassets */,
+				CA7EED1F1F434D8E0072F370 /* Info.plist */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +225,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA7EED161F434D8E0072F370 /* ViewController.swift in Sources */,
+				CAF161111F43A56400965040 /* CoreDataStack.swift in Sources */,
+				CA7EED2C1F436AB80072F370 /* Icon.swift in Sources */,
+				CA2AB9711F4C8908007C8918 /* AddIconImageTest.swift in Sources */,
 				CA7EED141F434D8E0072F370 /* AppDelegate.swift in Sources */,
+				CABE98C51F47427000C11F37 /* BackgroundTableViewCell.swift in Sources */,
+				CA0EA6E41F463E8C000F1ECA /* CustomIconTableViewCell.swift in Sources */,
+				CAF1610B1F43A46600965040 /* IconDesign.xcdatamodeld in Sources */,
+				CA0EA6E21F463E6C000F1ECA /* DefaultIconTableViewCell.swift in Sources */,
+				CABE98C91F4B480100C11F37 /* MainCollectionView.swift in Sources */,
+				CA7EED281F4350700072F370 /* IconController.swift in Sources */,
+				CABE98CB1F4B489200C11F37 /* MainViewController.swift in Sources */,
+				CA0EA6E61F463FE9000F1ECA /* IconDesignTableViewController.swift in Sources */,
+				CA2AB96D1F4C7F90007C8918 /* Background.swift in Sources */,
+				CA2AB96F1F4C8063007C8918 /* BackgroundController.swift in Sources */,
+				CABE98C71F474FE100C11F37 /* NewIconTableViewCell.swift in Sources */,
+				CA0EA6E01F463845000F1ECA /* IconView.swift in Sources */,
+				CA7EED261F434EBD0072F370 /* MainCollectionViewController.swift in Sources */,
+				CA7EED2A1F4364260072F370 /* IconCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,8 +408,22 @@
 				CA7EED241F434D8E0072F370 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CAF161091F43A46600965040 /* IconDesign.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CAF1610A1F43A46600965040 /* IconDesign.xcdatamodel */,
+			);
+			currentVersion = CAF1610A1F43A46600965040 /* IconDesign.xcdatamodel */;
+			path = IconDesign.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CA7EED081F434D8E0072F370 /* Project object */;
 }
