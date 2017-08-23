@@ -134,7 +134,7 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             return
-        } else if indexPath.section == 1 && indexPath.row == IconController.shared.customIcons.count {
+        } else if indexPath.section == 1 /*&& indexPath.row == IconController.shared.customIcons.count */{
             imagePickerType = .iconImage
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self

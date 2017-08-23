@@ -14,8 +14,10 @@ class CustomIconTableViewCell: UITableViewCell {
     @IBOutlet weak var customIconTextField: UITextField!
     @IBOutlet weak var customIconSwitch: UISwitch!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+//        self.isUserInteractionEnabled = false
         // Initialization code
     }
 
