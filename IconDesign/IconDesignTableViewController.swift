@@ -41,7 +41,7 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
                 
                 
                 // Make a new instance of Icon.
-                let icon = Icon(name: "", image: image, context: CoreDataStack.context)
+                let icon = Icon(name: "App", image: image, context: CoreDataStack.context)
                 IconController.shared.add(icon: icon)
                 tableView.reloadData()
             }
@@ -57,6 +57,13 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "#selector")
+//        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
         
     }
     
@@ -116,7 +123,7 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
                 let icon = IconController.shared.customIcons[indexPath.row]
                 
                 cell.customIconImage.image = icon.iconImage
-                cell.customIconTextField.text = icon.name
+                cell.customIconLabel.text = icon.name
                 
                 return cell
             }
@@ -134,44 +141,69 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             return
-        } else if indexPath.section == 1 /*&& indexPath.row == IconController.shared.customIcons.count */{
-            imagePickerType = .iconImage
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            
-            let alert = UIAlertController(title: "Select Image", message: "Photo Library", preferredStyle: .alert)
-            
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
-                    imagePicker.sourceType = .photoLibrary
-                    self.present(imagePicker, animated: true, completion: nil)
-                }))
-            }
-            
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
-            present(alert, animated: true, completion: nil)
-            
+        } else if indexPath.section == 1 {
+            presentAppNameAlertController()
         } else {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePickerType = .background
             
-            let alert = UIAlertController(title: "Change Background", message: "Photo Library", preferredStyle: .alert)
-            
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
-                    imagePicker.sourceType = .photoLibrary
-                    self.present(imagePicker, animated: true, completion: nil)
-                }))
-            }
-            
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
-            present(alert, animated: true, completion: nil)
         }
     }
+    // MARK: - App Name UIAlertController
+    func presentAppNameAlertController() {
+        
+        let alert1 = UIAlertController(title: "App Name", message: "Enter App Name", preferredStyle: .alert)
+        
+        alert1.addTextField { (textField) in textField.placeholder = "App Name" }
+        
+        alert1.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) -> Void in
+                self.presentAppImageAlertController()
+            }))
+        alert1.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alert1, animated: true, completion: nil)
+        
+        
+    }
     
+    
+    // MARK: - App image UIAlertController
+    func presentAppImageAlertController() {
+        imagePickerType = .iconImage
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        let alert2 = UIAlertController(title: "Select Image", message: "Photo Library", preferredStyle: .alert)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            alert2.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
+                imagePicker.sourceType = .photoLibrary
+                self.present(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        
+        alert2.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alert2, animated: true, completion: nil)
+    }
+    
+    // MARK: - Background UIAlertController
+    func presentBackgroundAlertController() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePickerType = .background
+        
+        let alert = UIAlertController(title: "Change Background", message: "Photo Library", preferredStyle: .alert)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
+                imagePicker.sourceType = .photoLibrary
+                self.present(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
     
     /*
      // Override to support conditional editing of the table view.

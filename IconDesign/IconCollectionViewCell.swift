@@ -13,12 +13,4 @@ class IconCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var iconLabel: UILabel!
     
-    var icon: Icon?
-    
-    func updateViews() {
-        guard let icon = icon else { return }
-        self.iconImage.image = icon.iconImage
-        self.iconLabel.text = icon.name
-        
-    }
 }

@@ -11,13 +11,19 @@ import UIKit
 class CustomIconTableViewCell: UITableViewCell {
     
     @IBOutlet weak var customIconImage: UIImageView!
-    @IBOutlet weak var customIconTextField: UITextField!
     @IBOutlet weak var customIconSwitch: UISwitch!
+    @IBOutlet weak var customIconLabel: UILabel!
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        customIconTextField.resignFirstResponder()
+
+        return true
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        self.isUserInteractionEnabled = false
+        self.isUserInteractionEnabled = false
         // Initialization code
     }
 
@@ -27,13 +33,6 @@ class CustomIconTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        picker.dismiss(animated: true, completion: nil)
-//        
-//        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//            delegate?.photoSelectViewControllerSelected(image)
-//            customIconImage.image = image
-//        }
-//    }
-
+    
 }
+

@@ -19,7 +19,7 @@
 //        do {
 //            return try CoreDataStack.context.fetch(request)
 //        } catch {
-//            return background
+//            return self.background
 //        }
 //    }
 //}

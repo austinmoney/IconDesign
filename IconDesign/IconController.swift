@@ -14,6 +14,12 @@ class IconController {
     // MARK: - Properties
 
     static let shared = IconController()
+    
+//    var icon: Icon? {
+//        didSet {
+//            update()
+//        }
+//    }
 
     var icons: [Icon] {
         
@@ -63,12 +69,15 @@ class IconController {
         saveToPersistentStorage()
     }
     
-//    func update(icon: Icon) {
-//            guard let icon = icon else { return }
-//            self.iconImage.image = icon.iconImage
-//            self.iconLabel.text = icon.name
-//            
-//    
+//    func update() {
+////        guard let icon = icon else { return }
+////        self.iconImage.image = icon.iconImage
+////        self.iconLabel.text = icon.name
+//        guard let icon = self.icon else { return }
+//        
+//        icon.name = name =
+//        
+//        saveToPersistentStorage()
 //    }
 
     func remove(icon: Icon) {
