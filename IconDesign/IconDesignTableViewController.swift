@@ -25,15 +25,14 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
     
     weak var delegate: PhotoSelectViewControllerDelegate?
     
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     @IBAction func doneButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        
+        picker.dismiss(animated: true, completion: { () -> Void in
+            self.presentAppNameAlertController()})
         if imagePickerType == imagePicker.iconImage {
             
             if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -41,7 +40,7 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
                 
                 
                 // Make a new instance of Icon.
-                let icon = Icon(name: "App", image: image, context: CoreDataStack.context)
+                let icon = Icon(name: "", image: image, context: CoreDataStack.context)
                 IconController.shared.add(icon: icon)
                 tableView.reloadData()
             }
@@ -95,6 +94,9 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
         }
     }
     
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        cell.backgroundColor = UIColor(red: 3/255, green: 10/255, blue: 200/255, alpha: 1)
+//    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
@@ -142,7 +144,7 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
         if indexPath.section == 0 {
             return
         } else if indexPath.section == 1 {
-            presentAppNameAlertController()
+            presentAppImageAlertController()
         } else {
             
         }
@@ -150,14 +152,25 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
     // MARK: - App Name UIAlertController
     func presentAppNameAlertController() {
         
+        var ACTextField: UITextField?
+        
         let alert1 = UIAlertController(title: "App Name", message: "Enter App Name", preferredStyle: .alert)
         
-        alert1.addTextField { (textField) in textField.placeholder = "App Name" }
+        alert1.addTextField { (textField) in textField.placeholder = "App Name"
+        ACTextField = textField
+            
+        }
         
         alert1.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) -> Void in
-                self.presentAppImageAlertController()
+                
+            guard let icon = IconController.shared.temporaryIcon else { return }
+            if let name = ACTextField?.text {
+                IconController.shared.update(icon: icon, withText: name)
+                self.tableView.reloadData()
+            }
+            
             }))
-        alert1.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        alert1.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alert1, animated: true, completion: nil)
         
@@ -224,32 +237,7 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
      }
      }
      */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
 }
 
 protocol PhotoSelectViewControllerDelegate: class {

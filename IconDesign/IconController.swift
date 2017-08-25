@@ -15,11 +15,7 @@ class IconController {
 
     static let shared = IconController()
     
-//    var icon: Icon? {
-//        didSet {
-//            update()
-//        }
-//    }
+    var temporaryIcon: Icon?
 
     var icons: [Icon] {
         
@@ -32,7 +28,6 @@ class IconController {
         }
     }
     
-    
     var customIcons: [Icon] {
         return icons.filter({$0.isCustomIcon})
     }
@@ -40,9 +35,6 @@ class IconController {
     var defaultIcons: [Icon] {
         return icons.filter({!$0.isCustomIcon})
     }
-    
-//    var allIcons: [Icon] = []
- 
     
     static func createMockIcons() {
         
@@ -56,7 +48,6 @@ class IconController {
         IconController.shared.saveToPersistentStorage()
         
         UserDefaults.standard.set(true, forKey: "mockIconsWereCreated")
-        
     }
     
     // MARK: - CRUD
@@ -66,19 +57,14 @@ class IconController {
 //        saveToPersistentStorage()
 //    }
     func add(icon: Icon) {
+        self.temporaryIcon = icon
         saveToPersistentStorage()
     }
     
-//    func update() {
-////        guard let icon = icon else { return }
-////        self.iconImage.image = icon.iconImage
-////        self.iconLabel.text = icon.name
-//        guard let icon = self.icon else { return }
-//        
-//        icon.name = name =
-//        
-//        saveToPersistentStorage()
-//    }
+    func update(icon: Icon, withText text: String) {
+        icon.name = text
+        saveToPersistentStorage()
+    }
 
     func remove(icon: Icon) {
         icon.managedObjectContext?.delete(icon)
@@ -92,5 +78,4 @@ class IconController {
             print ("error saving MOC.")
         }
     }
-    
 }

@@ -164,11 +164,6 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Icon Design" id="6rF-GP-LHk">
-                                    <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="W7D-hw-0hc">
-                                        <connections>
-                                            <action selector="cancelButtonTapped:" destination="Wb0-pp-M4w" id="60T-OF-Vac"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" systemItem="done" id="DQj-yf-tTp">
                                         <connections>
                                             <action selector="doneButtonTapped:" destination="Wb0-pp-M4w" id="nzw-F4-YN2"/>

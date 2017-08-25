@@ -10,17 +10,14 @@ import UIKit
 import CoreData
 
 class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
-
-//    @IBOutlet weak var mainCollectionView: MainCollectionView!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.reloadData()
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         fetchedResultsController.delegate = self
         
         do {
@@ -28,39 +25,11 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         } catch {
             NSLog("Error starting fetched results controller: \(error)")
         }
-        
-        
-        
-        
-//        func numberOfItems(inSection section: Int) -> Int {
-//            return IconController.shared.mockIcons.count
-//        }
-//        
-//        func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell? {
-//            
-//            guard let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "iconCell", for: indexPath) as? IconCollectionViewCell else { return UICollectionViewCell() }
-//            
-//            let icon = IconController.shared.mockIcons[indexPath.row]
-//            
-//            cell.iconImage.image = icon.iconImage
-//            cell.iconLabel.text = icon.name
-//            
-//            // Configure the cell
-//            
-//            return cell
-//        }
-
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Register cell classes
-        //        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "iconCell")
-        
-        // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
+    }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
