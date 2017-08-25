@@ -31,8 +31,7 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true, completion: { () -> Void in
-            self.presentAppNameAlertController()})
+        picker.dismiss(animated: true, completion: nil)
         if imagePickerType == imagePicker.iconImage {
             
             if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -40,18 +39,32 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
                 
                 
                 // Make a new instance of Icon.
-                let icon = Icon(name: "", image: image, context: CoreDataStack.context)
+                let icon = Icon(name: "", image: imageWithImage(image: image, scaledToSize: CGSize.init(width: 90.0, height: 90.0)), context: CoreDataStack.context)
                 IconController.shared.add(icon: icon)
+                self.presentAppNameAlertController()
                 tableView.reloadData()
             }
             
         } else if imagePickerType == imagePicker.background {
+            
             if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 delegate?.photoSelectViewControllerSelected(image)
+                
+                _ = Background(image: imageWithImage(image: image, scaledToSize: CGSize(width: 180.0, height: 250.0)), context: CoreDataStack.context)
+                BackgroundController.shared.add(image: image)
+                tableView.reloadData()
                 
             }
         }
         
+    }
+    
+    func imageWithImage(image:UIImage, scaledToSize newSize: CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, image.scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
     
     override func viewDidLoad() {
@@ -90,7 +103,7 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
         } else if section == 1 {
             return IconController.shared.customIcons.count + 1
         } else {
-            return 1
+            return BackgroundController.shared.background.count + 1
         }
     }
     
@@ -130,12 +143,20 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
                 return cell
             }
         } else if indexPath.section == 2 {
+            if indexPath.row == BackgroundController.shared.background.count {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "newIconCell", for: indexPath) as? NewIconTableViewCell else { return UITableViewCell() }
+                
+                return cell
+            } else {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "backgroundCell", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "backgroundCell", for: indexPath) as? BackgroundTableViewCell else { return UITableViewCell() }
             
-            // Configure the cell...
+            let background = BackgroundController.shared.background[indexPath.row]
+            
+            cell.backgroundImage.image = background.backgroundImage
             
             return cell
+            }
         }
         else  { return UITableViewCell() }
     }
@@ -145,8 +166,8 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
             return
         } else if indexPath.section == 1 {
             presentAppImageAlertController()
-        } else {
-            
+        } else if indexPath.section == 2 {
+            presentBackgroundAlertController()
         }
     }
     // MARK: - App Name UIAlertController

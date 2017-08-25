@@ -11,6 +11,7 @@ import CoreData
 
 class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -29,6 +30,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
+        setBackgroundImage()
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -63,6 +65,11 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
     }()
+    
+    func setBackgroundImage() {
+        guard let background = BackgroundController.shared.background.last else { return }
+        backgroundImage.image = background.backgroundImage
+    }
     
 
     /*
