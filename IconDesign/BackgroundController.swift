@@ -11,7 +11,11 @@ import CoreData
 
 class BackgroundController {
     
+    // MARK: - Properties
+    
     static let shared = BackgroundController()
+    
+    var temporaryBackground: Background?
     
     var background: [Background] {
         let request: NSFetchRequest<Background> = Background.fetchRequest()
@@ -25,8 +29,14 @@ class BackgroundController {
         }
     }
     
-    func add(image: UIImage) {
-        let background = Background(image: image, context: CoreDataStack.context)
+    // MARK: - CRUD
+    
+    func addBackgroundWith(image: UIImage) {
+            
+        let imageData = UIImagePNGRepresentation(image)
+
+        let background = Background(imageData: imageData, context: CoreDataStack.context)
+        self.temporaryBackground = background
         saveToPersistentStorage()
     }
     
@@ -35,11 +45,21 @@ class BackgroundController {
         saveToPersistentStorage()
     }
     
+    
     func saveToPersistentStorage() {
         do{
             try CoreDataStack.context.save()
         } catch {
             print ("error saving MOC.")
         }
+    }
+    
+    // MARK: - Helpers
+    func imageWithImage(image:UIImage, scaledToSize newSize: CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, image.scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }

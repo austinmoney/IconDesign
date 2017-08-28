@@ -37,10 +37,10 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
             if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 delegate?.photoSelectViewControllerSelected(image)
                 
+                let name = ""
                 
-                // Make a new instance of Icon.
-                let icon = Icon(name: "", image: imageWithImage(image: image, scaledToSize: CGSize.init(width: 90.0, height: 90.0)), context: CoreDataStack.context)
-                IconController.shared.add(icon: icon)
+                IconController.shared.addIcon(with: name, and: image)
+                
                 self.presentAppNameAlertController()
                 tableView.reloadData()
             }
@@ -49,23 +49,16 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
             
             if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 delegate?.photoSelectViewControllerSelected(image)
+                                
+                    BackgroundController.shared.addBackgroundWith(image: image)
                 
-                _ = Background(image: imageWithImage(image: image, scaledToSize: CGSize(width: 180.0, height: 250.0)), context: CoreDataStack.context)
-                BackgroundController.shared.add(image: image)
-                tableView.reloadData()
-                
+                    tableView.reloadData()
             }
         }
         
     }
     
-    func imageWithImage(image:UIImage, scaledToSize newSize: CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, image.scale)
-        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

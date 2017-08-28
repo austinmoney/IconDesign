@@ -14,6 +14,8 @@ class BackgroundTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.isUserInteractionEnabled = false
+
         // Initialization code
     }
 

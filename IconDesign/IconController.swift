@@ -51,12 +51,16 @@ class IconController {
     }
     
     // MARK: - CRUD
-    
-//    func add(name: String, image: UIImage) {
-//        let icon = Icon(name: name, image: image)
+
+//    func add(icon: Icon) {
+//        self.temporaryIcon = icon
 //        saveToPersistentStorage()
 //    }
-    func add(icon: Icon) {
+
+    func addIcon(with name: String, and image: UIImage) {
+        let scaledImage = imageWithImage(image: image, scaledToSize: CGSize.init(width: 90.0, height: 90.0))
+        
+        let icon = Icon(name: name, image: scaledImage, isCustomIcon: true, context: CoreDataStack.context)
         self.temporaryIcon = icon
         saveToPersistentStorage()
     }
@@ -78,4 +82,15 @@ class IconController {
             print ("error saving MOC.")
         }
     }
+    
+    // MARK: - Helpers
+    
+    func imageWithImage(image:UIImage, scaledToSize newSize: CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, image.scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+
 }

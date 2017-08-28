@@ -11,11 +11,10 @@ import CoreData
 
 extension Background {
     
-    convenience init(image: UIImage, context: NSManagedObjectContext = CoreDataStack.context) {
+    convenience init(imageData: Data?, context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)
-        
-        let imageData = UIImagePNGRepresentation(image) as NSData?
-        self.image = imageData
+    
+        self.image = imageData as NSData?
     }
 
     var backgroundImage: UIImage? {

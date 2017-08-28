@@ -30,7 +30,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3WJ-gH-M53">
                                 <rect key="frame" x="16" y="28" width="351" height="533"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="25" id="N3Q-1e-Yvg">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="25" id="N3Q-1e-Yvg">
                                     <size key="itemSize" width="63" height="91"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -55,7 +55,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aai-Zq-RYg">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Aai-Zq-RYg">
                                                     <rect key="frame" x="0.0" y="62" width="63" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -65,9 +65,11 @@
                                         </view>
                                         <constraints>
                                             <constraint firstItem="4Ut-tS-Ydv" firstAttribute="leading" secondItem="sAR-j4-qvX" secondAttribute="leading" id="0ox-gj-u8y"/>
+                                            <constraint firstAttribute="trailing" secondItem="Aai-Zq-RYg" secondAttribute="trailing" id="3bd-yr-3aE"/>
                                             <constraint firstAttribute="trailing" secondItem="4Ut-tS-Ydv" secondAttribute="trailing" id="Qxd-gu-Yaf"/>
+                                            <constraint firstItem="Aai-Zq-RYg" firstAttribute="leading" secondItem="sAR-j4-qvX" secondAttribute="leading" id="Vdk-ca-5y3"/>
+                                            <constraint firstAttribute="bottom" secondItem="Aai-Zq-RYg" secondAttribute="bottom" id="Xb5-aM-IiI"/>
                                             <constraint firstAttribute="bottom" secondItem="Aai-Zq-RYg" secondAttribute="bottom" id="ahO-j5-KVr"/>
-                                            <constraint firstItem="4Ut-tS-Ydv" firstAttribute="centerX" secondItem="Aai-Zq-RYg" secondAttribute="centerX" id="lkf-6I-POf"/>
                                             <constraint firstItem="4Ut-tS-Ydv" firstAttribute="top" secondItem="sAR-j4-qvX" secondAttribute="top" id="nI4-FV-zdN"/>
                                             <constraint firstItem="Aai-Zq-RYg" firstAttribute="top" secondItem="4Ut-tS-Ydv" secondAttribute="bottom" constant="1" id="w06-MN-zq2"/>
                                         </constraints>
