@@ -232,25 +232,57 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
         present(alert, animated: true, completion: nil)
     }
     
-    /*
+    
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
+     
+        
+        switch indexPath.section {
+            
+        case 0:
+            return false
+            
+        case 1:
+            
+            if indexPath.row == IconController.shared.customIcons.count + 1 {
+                return false
+            } else {
+                return true
+            }
+            
+        case 2:
+            if indexPath.row == BackgroundController.shared.background.count + 1 {
+                return false
+            } else {
+                return true
+            }
+         
+        default:
+            return true
+        }
      }
-     */
+ 
     
-    /*
+    
      // Override to support editing the table view.
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            if indexPath.section == 1 {
+                
+                let icon = IconController.shared.customIcons[indexPath.row]
+                IconController.shared.remove(icon: icon)
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            } else if indexPath.section == 2 {
+                let background = BackgroundController.shared.background[indexPath.row]
+                BackgroundController.shared.remove(background: background)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+    }
+ 
 
 }
 
