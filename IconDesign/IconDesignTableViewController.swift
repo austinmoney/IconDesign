@@ -132,7 +132,7 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
                 
                 cell.customIconImage.image = icon.iconImage
                 cell.customIconLabel.text = icon.name
-                
+//                cell.customIconSwitch.isOn = icon.isHidden
                 return cell
             }
         } else if indexPath.section == 2 {
@@ -244,14 +244,14 @@ class IconDesignTableViewController: UITableViewController, UIImagePickerControl
             
         case 1:
             
-            if indexPath.row == IconController.shared.customIcons.count + 1 {
+            if indexPath.row == IconController.shared.customIcons.count {
                 return false
             } else {
                 return true
             }
             
         case 2:
-            if indexPath.row == BackgroundController.shared.background.count + 1 {
+            if indexPath.row == BackgroundController.shared.background.count {
                 return false
             } else {
                 return true

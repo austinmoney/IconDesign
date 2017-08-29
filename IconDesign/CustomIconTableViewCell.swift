@@ -14,6 +14,9 @@ class CustomIconTableViewCell: UITableViewCell {
     @IBOutlet weak var customIconSwitch: UISwitch!
     @IBOutlet weak var customIconLabel: UILabel!
     
+    @IBAction func switchValueChanged(_ sender: UISwitch) {
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 //        customIconTextField.resignFirstResponder()

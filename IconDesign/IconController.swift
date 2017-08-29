@@ -28,8 +28,10 @@ class IconController {
         }
     }
     
-    
-    
+    var mainIcons: [Icon] {
+        return icons.filter({!$0.isDockIcon})
+    }
+
     var customIcons: [Icon] {
         return icons.filter({$0.isCustomIcon && !$0.isDockIcon})
     }

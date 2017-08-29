@@ -7,10 +7,11 @@
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="isCustomIcon" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isDockIcon" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSwitchOn" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Background" positionX="-63" positionY="0" width="128" height="60"/>
-        <element name="Icon" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Icon" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

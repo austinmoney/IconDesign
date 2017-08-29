@@ -11,7 +11,7 @@ import CoreData
 
 extension Icon {
     
-    convenience init(name: String, image: UIImage, isCustomIcon: Bool = true, isDockIcon: Bool = false, context: NSManagedObjectContext = CoreDataStack.context) {
+    convenience init(name: String, image: UIImage, isCustomIcon: Bool = true, isDockIcon: Bool = false, isSwitchOn: Bool = true, context: NSManagedObjectContext = CoreDataStack.context) {
         
         self.init(context: context)
         

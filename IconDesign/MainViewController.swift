@@ -11,7 +11,7 @@ import CoreData
 
 class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var backgroundImage: UIImageView!
+//    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var dockCollectionView: UICollectionView!
     
@@ -34,7 +34,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
-        setBackgroundImage()
+//        setBackgroundImage()
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if collectionView == self.collectionView {
@@ -48,7 +48,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == self.collectionView {
-        return IconController.shared.icons.count
+        return IconController.shared.mainIcons.count
         } else if collectionView == self.dockCollectionView {
             return IconController.shared.dockIcons.count
         }
@@ -60,10 +60,11 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
             
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "iconCell", for: indexPath) as? IconCollectionViewCell else { return UICollectionViewCell() }
         
-        let icon = IconController.shared.icons[indexPath.row]
+        let icon = IconController.shared.mainIcons[indexPath.row]
         
         cell.iconImage.image = icon.iconImage
         cell.iconLabel.text = icon.name
+            
         
         return cell
         } else if collectionView == self.dockCollectionView {
@@ -94,10 +95,10 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
     }()
     
-    func setBackgroundImage() {
-        guard let background = BackgroundController.shared.background.last else { return }
-        backgroundImage.image = background.backgroundImage
-    }
+//    func setBackgroundImage() {
+//        guard let background = BackgroundController.shared.background.last else { return }
+//        backgroundImage.image = background.backgroundImage
+//    }
     
 
     /*
