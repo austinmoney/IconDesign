@@ -28,12 +28,18 @@ class IconController {
         }
     }
     
+    
+    
     var customIcons: [Icon] {
-        return icons.filter({$0.isCustomIcon})
+        return icons.filter({$0.isCustomIcon && !$0.isDockIcon})
     }
     
     var defaultIcons: [Icon] {
-        return icons.filter({!$0.isCustomIcon})
+        return icons.filter({!$0.isCustomIcon && !$0.isDockIcon})
+    }
+    
+    var dockIcons: [Icon] {
+        return icons.filter({$0.isDockIcon})
     }
     
     static func createMockIcons() {
@@ -48,6 +54,18 @@ class IconController {
         IconController.shared.saveToPersistentStorage()
         
         UserDefaults.standard.set(true, forKey: "mockIconsWereCreated")
+    }
+    
+    static func createDockIcons() {
+        let _ = Icon(name: "Phone", image: #imageLiteral(resourceName: "phone"), isCustomIcon: false, isDockIcon: true)
+        let _ = Icon(name: "Safari", image: #imageLiteral(resourceName: "safari"), isCustomIcon: false, isDockIcon: true)
+        let _ = Icon(name: "Music", image: #imageLiteral(resourceName: "music"), isCustomIcon: false, isDockIcon: true)
+        let _ = Icon(name: "Messages", image: #imageLiteral(resourceName: "message"), isCustomIcon: false, isDockIcon: true)
+        
+        IconController.shared.saveToPersistentStorage()
+        
+        UserDefaults.standard.set(true, forKey: "dockIconsWereCreated")
+        
     }
     
     // MARK: - CRUD

@@ -13,6 +13,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var dockCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,9 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         collectionView.delegate = self
         collectionView.dataSource = self
         fetchedResultsController.delegate = self
+        
+        dockCollectionView.delegate = self
+        dockCollectionView.dataSource = self
         
         do {
             try fetchedResultsController.performFetch()
@@ -33,14 +37,27 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         setBackgroundImage()
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if collectionView == self.collectionView {
+         return 1
+        } else if collectionView == self.dockCollectionView {
+            return 1
+        }
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == self.collectionView {
         return IconController.shared.icons.count
+        } else if collectionView == self.dockCollectionView {
+            return IconController.shared.dockIcons.count
+        }
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == self.collectionView {
+            
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "iconCell", for: indexPath) as? IconCollectionViewCell else { return UICollectionViewCell() }
         
         let icon = IconController.shared.icons[indexPath.row]
@@ -49,6 +66,17 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         cell.iconLabel.text = icon.name
         
         return cell
+        } else if collectionView == self.dockCollectionView {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dockCollectionViewCell", for: indexPath) as? IconCollectionViewCell else { return UICollectionViewCell() }
+            
+            let icon = IconController.shared.dockIcons[indexPath.row]
+            
+            cell.dockImage.image = icon.iconImage
+            cell.dockLabel.text = icon.name
+            return cell
+        }
+        return UICollectionViewCell()
     }
 
 

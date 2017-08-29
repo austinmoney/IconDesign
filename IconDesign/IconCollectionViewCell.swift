@@ -13,4 +13,6 @@ class IconCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var iconLabel: UILabel!
     
+    @IBOutlet weak var dockImage: UIImageView!
+    @IBOutlet weak var dockLabel: UILabel!
 }
