@@ -38,35 +38,34 @@ class IconController {
         return icons.filter({!$0.isCustomIcon && !$0.isDockIcon})
     }
     
-    var dockIcons: [Icon] {
-        return icons.filter({$0.isDockIcon})
-    }
+//    var dockIcons: [Icon] {
+//        return icons.filter({$0.isDockIcon})
+//    }
     
     static func createMockIcons() {
         
-        let _ = Icon(name: "Snapchat", image: #imageLiteral(resourceName: "snapchat"), isCustomIcon: false)
-        let _ = Icon(name: "Facebook", image: #imageLiteral(resourceName: "fb"), isCustomIcon: false)
-        let _ = Icon(name: "Medium", image: #imageLiteral(resourceName: "medium"), isCustomIcon: false)
-        let _ = Icon(name: "Settings", image: #imageLiteral(resourceName: "settings"), isCustomIcon: false)
+        let _ = Icon(name: "Ball", image: #imageLiteral(resourceName: "Ball"), isCustomIcon: false)
         let _ = Icon(name: "Mail", image: #imageLiteral(resourceName: "Mail"), isCustomIcon: false)
-        let _ = Icon(name: "Stock", image: #imageLiteral(resourceName: "stock"), isCustomIcon: false)
+        let _ = Icon(name: "Messages", image: #imageLiteral(resourceName: "Message"), isCustomIcon: false)
+        let _ = Icon(name: "Compass", image: #imageLiteral(resourceName: "Compass"), isCustomIcon: false)
+        let _ = Icon(name: "Camera", image: #imageLiteral(resourceName: "Camera"), isCustomIcon: false)
 
         IconController.shared.saveToPersistentStorage()
         
         UserDefaults.standard.set(true, forKey: "mockIconsWereCreated")
     }
     
-    static func createDockIcons() {
-        let _ = Icon(name: "Phone", image: #imageLiteral(resourceName: "phone"), isCustomIcon: false, isDockIcon: true)
-        let _ = Icon(name: "Safari", image: #imageLiteral(resourceName: "safari"), isCustomIcon: false, isDockIcon: true)
-        let _ = Icon(name: "Music", image: #imageLiteral(resourceName: "music"), isCustomIcon: false, isDockIcon: true)
-        let _ = Icon(name: "Messages", image: #imageLiteral(resourceName: "message"), isCustomIcon: false, isDockIcon: true)
-        
-        IconController.shared.saveToPersistentStorage()
-        
-        UserDefaults.standard.set(true, forKey: "dockIconsWereCreated")
-        
-    }
+//    static func createDockIcons() {
+//        let _ = Icon(name: "Phone", image: #imageLiteral(resourceName: "phone"), isCustomIcon: false, isDockIcon: true)
+//        let _ = Icon(name: "Safari", image: #imageLiteral(resourceName: "safari"), isCustomIcon: false, isDockIcon: true)
+//        let _ = Icon(name: "Music", image: #imageLiteral(resourceName: "music"), isCustomIcon: false, isDockIcon: true)
+//        let _ = Icon(name: "Messages", image: #imageLiteral(resourceName: "message"), isCustomIcon: false, isDockIcon: true)
+//        
+//        IconController.shared.saveToPersistentStorage()
+//        
+//        UserDefaults.standard.set(true, forKey: "dockIconsWereCreated")
+//        
+//    }
     
     // MARK: - CRUD
 

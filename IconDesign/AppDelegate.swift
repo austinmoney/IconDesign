@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.bool(forKey: "mockIconsWereCreated") == false {
                     IconController.createMockIcons()
         }
-        if UserDefaults.standard.bool(forKey: "dockIconsWereCreated") == false {
-            IconController.createDockIcons()
-        }
+//        if UserDefaults.standard.bool(forKey: "dockIconsWereCreated") == false {
+//            IconController.createDockIcons()
+//        }
 
         return true
     }
