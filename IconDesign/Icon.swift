@@ -11,7 +11,7 @@ import CoreData
 
 extension Icon {
     
-    convenience init(name: String, image: UIImage, isCustomIcon: Bool = true, isDockIcon: Bool = false, context: NSManagedObjectContext = CoreDataStack.context) {
+    convenience init(name: String, image: UIImage, isCustomIcon: Bool = true, isHidden: Bool = false, context: NSManagedObjectContext = CoreDataStack.context) {
         
         self.init(context: context)
         
@@ -19,7 +19,7 @@ extension Icon {
         let imageData = UIImagePNGRepresentation(image) as NSData?
         self.image = imageData
         self.isCustomIcon = isCustomIcon
-        self.isDockIcon = isDockIcon
+        self.isHidden = isHidden
     }
     
     var iconImage: UIImage? {

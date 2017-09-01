@@ -14,6 +14,22 @@ class CustomIconTableViewCell: UITableViewCell {
     @IBOutlet weak var customIconSwitch: UISwitch!
     @IBOutlet weak var customIconLabel: UILabel!
     
+    weak var delegate: CustomIconTableViewCellDelegate?
+    
+    var icon: Icon? {
+        didSet {
+            guard let unwrappedIcon = icon else { return }
+            customIconLabel.text = unwrappedIcon.name
+            customIconImage.image = unwrappedIcon.iconImage
+            customIconSwitch.isOn = unwrappedIcon.isHidden
+        }
+    }
+    
+    @IBAction func valueDidChange(_ sender: UISwitch) {
+        delegate?.customIconIsHiddenValueDidChange(cell: self, selectedValue: !customIconSwitch.isOn)
+
+        
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 //        customIconTextField.resignFirstResponder()
@@ -32,7 +48,8 @@ class CustomIconTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
 }
 
+protocol CustomIconTableViewCellDelegate: class {
+    func customIconIsHiddenValueDidChange(cell: CustomIconTableViewCell, selectedValue: Bool)
+}

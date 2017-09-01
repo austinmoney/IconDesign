@@ -9,11 +9,10 @@
 import UIKit
 import CoreData
 
-class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, DefaultIconTableViewCellDelegate, CustomIconTableViewCellDelegate {
     
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
-//    @IBOutlet weak var dockCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -25,8 +24,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         
         tableView.delegate = self
         tableView.dataSource = self
-//        dockCollectionView.delegate = self
-//        dockCollectionView.dataSource = self
         
         do {
             try fetchedResultsController.performFetch()
@@ -49,7 +46,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == self.collectionView {
-        return IconController.shared.icons.count
+        return IconController.shared.iconsNotHidden.count
         }
         return 1
     }
@@ -59,7 +56,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
             
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "iconCell", for: indexPath) as? IconCollectionViewCell else { return UICollectionViewCell() }
         
-        let icon = IconController.shared.icons[indexPath.row]
+        let icon = IconController.shared.iconsNotHidden[indexPath.row]
         
         cell.iconImage.image = icon.iconImage
         cell.iconLabel.text = icon.name
@@ -93,14 +90,11 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     // MARK: - Properties
     
-    // Enum with two cases. One for if the image is for an icon, and one for if it's the background image.
     enum imagePicker {
         case iconImage
         
         case background
     }
-    
-    // Variable of the type of your enum
     
     var imagePickerType = imagePicker.background
     
@@ -131,13 +125,10 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
                 tableView.reloadData()
             }
         }
-        
     }
-    
     
     func dismissKeyboard() {
         view.endEditing(true)
-        
     }
     
     // MARK: - Table view data source
@@ -181,6 +172,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
             
             cell.defaultIconImage.image = icon.iconImage
             cell.defaultIconLabel.text = icon.name
+            cell.defaultIconSwitch.isOn = !icon.isHidden
+            cell.delegate = self
             
             return cell
             
@@ -200,6 +193,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
                 
                 cell.customIconImage.image = icon.iconImage
                 cell.customIconLabel.text = icon.name
+                cell.customIconSwitch.isOn = !icon.isHidden
+                cell.delegate = self
                 
                 return cell
             }
@@ -225,12 +220,13 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             return
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == 1 && indexPath.row == IconController.shared.customIcons.count {
             presentAppImageAlertController()
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 2 && indexPath.row == BackgroundController.shared.background.count {
             presentBackgroundAlertController()
         }
     }
+    
     // MARK: - App Name UIAlertController
     func presentAppNameAlertController() {
         
@@ -262,6 +258,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     
     // MARK: - App image UIAlertController
+    
     func presentAppImageAlertController() {
         imagePickerType = .iconImage
         let imagePicker = UIImagePickerController()
@@ -282,6 +279,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     }
     
     // MARK: - Background UIAlertController
+    
     func presentBackgroundAlertController() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -303,6 +301,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     
     // Override to support conditional editing of the table view.
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         
@@ -313,14 +312,14 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
             
         case 1:
             
-            if indexPath.row == IconController.shared.customIcons.count + 1 {
+            if indexPath.row == IconController.shared.customIcons.count {
                 return false
             } else {
                 return true
             }
             
         case 2:
-            if indexPath.row == BackgroundController.shared.background.count + 1 {
+            if indexPath.row == BackgroundController.shared.background.count {
                 return false
             } else {
                 return true
@@ -334,6 +333,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     
     // Override to support editing the table view.
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
@@ -354,22 +354,30 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         }
     }
     
+    func iconIsHiddenValueDidChange(cell: DefaultIconTableViewCell, selectedValue: Bool) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        let icon = IconController.shared.defaultIcons[indexPath.row]
+        
+        IconController.shared.updateIconSwitch(icon: icon, valueSelected: selectedValue)
+        
+        self.collectionView.reloadData()
+    }
+    
+    func customIconIsHiddenValueDidChange(cell: CustomIconTableViewCell, selectedValue: Bool) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        let icon = IconController.shared.customIcons[indexPath.row]
+        
+        IconController.shared.updateIconSwitch(icon: icon, valueSelected: selectedValue)
+        
+        self.collectionView.reloadData()
+    }
+    
     
 }
 
 protocol PhotoSelectViewControllerDelegate: class {
     func photoSelectViewControllerSelected(_ image: UIImage)
 }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 

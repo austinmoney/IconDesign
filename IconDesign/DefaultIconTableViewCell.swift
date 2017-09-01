@@ -14,10 +14,25 @@ class DefaultIconTableViewCell: UITableViewCell {
     @IBOutlet weak var defaultIconLabel: UILabel!
     @IBOutlet weak var defaultIconSwitch: UISwitch!
     
+    weak var delegate: DefaultIconTableViewCellDelegate?
+    
+    var icon: Icon? {
+        didSet {
+            guard let unwrappedIcon = icon else { return }
+            defaultIconSwitch.isOn = unwrappedIcon.isHidden
+            defaultIconLabel.text = unwrappedIcon.name
+            defaultIconImage.image = unwrappedIcon.iconImage
+        }
+    }
+    
+    @IBAction func switchValueDidChange(_ sender: UISwitch) {
+        delegate?.iconIsHiddenValueDidChange(cell: self, selectedValue: !defaultIconSwitch.isOn)
+        
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.isUserInteractionEnabled = false
+//        self.isUserInteractionEnabled = false
         // Initialization code
     }
 
@@ -27,4 +42,8 @@ class DefaultIconTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+protocol DefaultIconTableViewCellDelegate: class {
+    func iconIsHiddenValueDidChange(cell: DefaultIconTableViewCell, selectedValue: Bool)
 }

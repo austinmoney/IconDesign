@@ -31,16 +31,16 @@ class IconController {
     
     
     var customIcons: [Icon] {
-        return icons.filter({$0.isCustomIcon && !$0.isDockIcon})
+        return icons.filter({$0.isCustomIcon})
     }
     
     var defaultIcons: [Icon] {
-        return icons.filter({!$0.isCustomIcon && !$0.isDockIcon})
+        return icons.filter({!$0.isCustomIcon})
     }
     
-//    var dockIcons: [Icon] {
-//        return icons.filter({$0.isDockIcon})
-//    }
+    var iconsNotHidden: [Icon] {
+        return icons.filter({!$0.isHidden})
+    }
     
     static func createMockIcons() {
         
@@ -84,6 +84,11 @@ class IconController {
     
     func update(icon: Icon, withText text: String) {
         icon.name = text
+        saveToPersistentStorage()
+    }
+    
+    func updateIconSwitch(icon: Icon, valueSelected: Bool) {
+        icon.isHidden = valueSelected
         saveToPersistentStorage()
     }
 
