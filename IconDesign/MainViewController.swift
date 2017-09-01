@@ -209,7 +209,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate, 
                 
                 let background = BackgroundController.shared.background[indexPath.row]
                 
-                cell.backgroundImage.image = background.backgroundImage
+                cell.background = background
                 
                 return cell
             }

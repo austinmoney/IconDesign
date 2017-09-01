@@ -29,6 +29,10 @@ class BackgroundController {
         }
     }
     
+    var backgroundWithSwitchOn: [Background] {
+        return background.filter({$0.isOn})
+    }
+    
     // MARK: - CRUD
     
     func addBackgroundWith(image: UIImage) {
